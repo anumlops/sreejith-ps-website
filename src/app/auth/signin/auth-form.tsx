@@ -6,19 +6,35 @@ import { Button } from "@components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@components/ui/card"
 import { Input } from "@components/ui/input"
 import { Label } from "@components/ui/label"
-import { Separator } from "@components/ui/separator"
-
 
 export function AuthForm() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState("")
 
   const handleCredentialsLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
-    await signIn("credentials", { email, password, callbackUrl: "/admin" })
-    setLoading(false)
+    setError("")
+    try {
+      const result = await signIn("credentials", {
+        email,
+        password,
+        callbackUrl: "/admin",
+        redirect: false,
+      })
+      if (result?.error) {
+        setError("Invalid email or password")
+      } else if (result?.url) {
+        window.location.href = result.url
+      }
+    } catch (err) {
+      setError("Login failed. Check console for details.")
+      console.error("Login error:", err)
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -38,6 +54,9 @@ export function AuthForm() {
               <Label htmlFor="password">Password</Label>
               <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
             </div>
+            {error && (
+              <p className="text-sm text-red-500 bg-red-50 px-3 py-2 rounded-md">{error}</p>
+            )}
             <Button type="submit" className="w-full" disabled={loading}>
               {loading ? "Signing in..." : "Sign in with Email"}
             </Button>
