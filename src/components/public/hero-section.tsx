@@ -1,8 +1,9 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, useScroll, useTransform } from "framer-motion"
 import Link from "next/link"
 import { Button } from "@components/ui/button"
+import { useRef } from "react"
 
 interface Props {
   title: string
@@ -11,19 +12,27 @@ interface Props {
 }
 
 export function HeroSection({ title, subtitle, heroImage }: Props) {
+  const ref = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] })
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"])
+  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.1])
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0])
+  const contentY = useTransform(scrollYProgress, [0, 0.6], [0, -50])
+
   return (
-    <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
+    <section ref={ref} className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
       {heroImage ? (
-        <img
+        <motion.img
           src={heroImage}
           alt=""
+          style={{ y: bgY, scale: bgScale }}
           className="absolute inset-0 w-full h-full object-cover"
         />
       ) : (
         <div className="absolute inset-0 bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900" />
       )}
       <div className="absolute inset-0 bg-black/40" />
-      <div className="relative z-10 text-center text-white px-4 max-w-3xl">
+      <motion.div style={{ opacity: contentOpacity, y: contentY }} className="relative z-10 text-center text-white px-4 max-w-3xl">
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -64,7 +73,7 @@ export function HeroSection({ title, subtitle, heroImage }: Props) {
             </Button>
           </Link>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   )
 }
