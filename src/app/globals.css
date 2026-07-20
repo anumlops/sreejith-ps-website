@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -20,6 +22,8 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-bg-alt: var(--bg-alt);
+  --color-text-muted: var(--text-muted);
   --radius: 0.625rem;
 }
 
@@ -43,6 +47,32 @@
   --border: #e5e5e5;
   --input: #e5e5e5;
   --ring: #0a0a0a;
+  --bg-alt: #fafafa;
+  --text-muted: #525252;
+}
+
+[data-theme="dark"] {
+  --background: #12180F;
+  --foreground: #F2EDE3;
+  --card: #1B2417;
+  --card-foreground: #F2EDE3;
+  --popover: #1B2417;
+  --popover-foreground: #F2EDE3;
+  --primary: #5B8A52;
+  --primary-foreground: #12180F;
+  --secondary: #1B2417;
+  --secondary-foreground: #F2EDE3;
+  --muted: #1B2417;
+  --muted-foreground: #B8C2AE;
+  --accent: #1B2417;
+  --accent-foreground: #F2EDE3;
+  --destructive: #ef4444;
+  --destructive-foreground: #fafafa;
+  --border: #2A3525;
+  --input: #2A3525;
+  --ring: #5B8A52;
+  --bg-alt: #1B2417;
+  --text-muted: #B8C2AE;
 }
 
 body {

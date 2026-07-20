@@ -12,7 +12,7 @@ export default function ApecVision() {
       <h1 className="text-5xl font-bold tracking-tight mb-8">APEC Vision</h1>
       <div className="prose prose-neutral max-w-none">
         <h2>Agricultural & Physical Education Center</h2>
-        <p className="text-xl text-neutral-600">
+        <p className="text-xl text-text-muted">
           APEC represents a holistic approach to community development,
           combining agricultural sustainability with physical wellness.
         </p>

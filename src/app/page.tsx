@@ -36,10 +36,10 @@ export default async function Home() {
         </section>
       )}
 
-      <section className="bg-neutral-50 py-24">
+      <section className="bg-bg-alt py-24">
         <div className="max-w-3xl mx-auto text-center px-4">
           <h2 className="text-3xl font-bold mb-4">About Sreejith P.S.</h2>
-          <p className="text-lg text-neutral-600 mb-8">
+          <p className="text-lg text-text-muted mb-8">
             Dedicated to empowering communities through sustainable agriculture
             and physical education. APEC (Agricultural & Physical Education
             Center) is the vision that drives meaningful change.

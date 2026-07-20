@@ -21,7 +21,7 @@ export function ActivityCard({
   return (
     <Link href={`/activities/${slug}`} className="group block">
       <article className="space-y-3">
-        <div className="aspect-[4/3] rounded-xl overflow-hidden bg-neutral-100">
+        <div className="aspect-[4/3] rounded-xl overflow-hidden bg-muted">
           {coverImage ? (
             <img
               src={coverImage}
@@ -36,18 +36,18 @@ export function ActivityCard({
         </div>
         <div className="space-y-1">
           {category && (
-            <p className="text-xs text-neutral-500 uppercase tracking-wider">
+            <p className="text-xs text-muted-foreground uppercase tracking-wider">
               {category.name}
             </p>
           )}
-          <h3 className="font-semibold text-lg group-hover:text-neutral-600 transition-colors">
+          <h3 className="font-semibold text-lg group-hover:text-foreground transition-colors">
             {title}
           </h3>
-          <p className="text-sm text-neutral-500 line-clamp-2">
+          <p className="text-sm text-muted-foreground line-clamp-2">
             {shortDescription}
           </p>
           {publishedAt && (
-            <p className="text-xs text-neutral-400">
+            <p className="text-xs text-muted-foreground">
               {formatDate(publishedAt)}
             </p>
           )}

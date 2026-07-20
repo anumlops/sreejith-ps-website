@@ -10,7 +10,7 @@ export default function About() {
     <div className="max-w-4xl mx-auto px-4 py-24">
       <h1 className="text-5xl font-bold tracking-tight mb-8">About</h1>
       <div className="prose prose-neutral max-w-none">
-        <p className="text-xl text-neutral-600 leading-relaxed">
+        <p className="text-xl text-text-muted leading-relaxed">
           Sreejith P.S. is a community leader dedicated to transforming lives
           through sustainable agriculture and physical education.
         </p>

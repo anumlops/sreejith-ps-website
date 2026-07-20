@@ -16,26 +16,26 @@ export default async function Contact() {
   return (
     <div className="max-w-7xl mx-auto px-4 py-24">
       <h1 className="text-5xl font-bold tracking-tight mb-4">Contact</h1>
-      <p className="text-xl text-neutral-600 mb-12">
+      <p className="text-xl text-text-muted mb-12">
         Get in touch with us.
       </p>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
         <div className="space-y-8">
           {settings.phone && (
             <div className="flex items-start gap-4">
-              <Phone className="h-5 w-5 mt-1 text-neutral-400" />
+              <Phone className="h-5 w-5 mt-1 text-muted-foreground" />
               <div>
                 <h3 className="font-medium">Phone</h3>
-                <p className="text-neutral-600">{settings.phone}</p>
+                <p className="text-text-muted">{settings.phone}</p>
               </div>
             </div>
           )}
           {settings.contactEmail && (
             <div className="flex items-start gap-4">
-              <Mail className="h-5 w-5 mt-1 text-neutral-400" />
+              <Mail className="h-5 w-5 mt-1 text-muted-foreground" />
               <div>
                 <h3 className="font-medium">Email</h3>
-                <p className="text-neutral-600">
+                <p className="text-text-muted">
                   {settings.contactEmail}
                 </p>
               </div>
@@ -43,10 +43,10 @@ export default async function Contact() {
           )}
           {settings.address && (
             <div className="flex items-start gap-4">
-              <MapPin className="h-5 w-5 mt-1 text-neutral-400" />
+              <MapPin className="h-5 w-5 mt-1 text-muted-foreground" />
               <div>
                 <h3 className="font-medium">Address</h3>
-                <p className="text-neutral-600 whitespace-pre-line">
+                <p className="text-text-muted whitespace-pre-line">
                   {settings.address}
                 </p>
               </div>

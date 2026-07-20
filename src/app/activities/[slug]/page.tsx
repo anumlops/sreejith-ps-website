@@ -45,7 +45,7 @@ export default async function ActivityDetail({ params }: Props) {
       )}
 
       <div className="space-y-4 mb-12">
-        <div className="flex items-center gap-3 text-sm text-neutral-500">
+        <div className="flex items-center gap-3 text-sm text-muted-foreground">
           {activity.category && (
             <span className="text-xs uppercase tracking-wider">
               {activity.category.name}
@@ -56,7 +56,7 @@ export default async function ActivityDetail({ params }: Props) {
         <h1 className="text-5xl font-bold tracking-tight">
           {activity.title}
         </h1>
-        <p className="text-xl text-neutral-600">
+        <p className="text-xl text-text-muted">
           {activity.shortDescription}
         </p>
       </div>

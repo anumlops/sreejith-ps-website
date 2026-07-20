@@ -2,12 +2,12 @@ import Link from "next/link"
 
 export function Footer() {
   return (
-    <footer className="border-t bg-neutral-50">
+    <footer className="border-t bg-bg-alt">
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <h3 className="font-semibold mb-2">Sreejith P.S.</h3>
-            <p className="text-sm text-neutral-600">
+            <p className="text-sm text-text-muted">
               Dedicated to community development through agriculture and
               physical education.
             </p>
@@ -23,7 +23,7 @@ export function Footer() {
                 <Link
                   key={l.href}
                   href={l.href}
-                  className="block text-sm text-neutral-600 hover:text-neutral-900"
+                  className="block text-sm text-text-muted hover:text-foreground"
                 >
                   {l.label}
                 </Link>
@@ -32,7 +32,7 @@ export function Footer() {
           </div>
           <div>
             <h3 className="font-semibold mb-2">APEC</h3>
-            <p className="text-sm text-neutral-600">
+            <p className="text-sm text-text-muted">
               Agricultural & Physical Education Center
             </p>
           </div>

@@ -14,7 +14,7 @@ export function GalleryClient({ images }: { images: GalleryImage[] }) {
   const [current, setCurrent] = useState<number | null>(null)
 
   if (images.length === 0) {
-    return <p className="text-neutral-500">No images in the gallery yet.</p>
+    return <p className="text-muted-foreground">No images in the gallery yet.</p>
   }
 
   return (

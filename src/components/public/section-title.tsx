@@ -12,12 +12,12 @@ export function SectionTitle({ title, description, href }: Props) {
     <div className="flex items-end justify-between">
       <div>
         <h2 className="text-3xl font-bold">{title}</h2>
-        {description && <p className="text-neutral-500 mt-1">{description}</p>}
+        {description && <p className="text-muted-foreground mt-1">{description}</p>}
       </div>
       {href && (
         <Link
           href={href}
-          className="text-sm text-neutral-500 hover:text-neutral-900 flex items-center gap-1"
+          className="text-sm text-neutral-500 hover:text-foreground flex items-center gap-1"
         >
           View all <ChevronRight className="h-3 w-3" />
         </Link>

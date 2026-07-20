@@ -19,7 +19,7 @@ export default async function Gallery() {
   return (
     <div className="max-w-7xl mx-auto px-4 py-24">
       <h1 className="text-5xl font-bold tracking-tight mb-4">Gallery</h1>
-      <p className="text-xl text-neutral-600 mb-12">
+      <p className="text-xl text-text-muted mb-12">
         Moments captured from our activities.
       </p>
       <GalleryClient images={images} />
