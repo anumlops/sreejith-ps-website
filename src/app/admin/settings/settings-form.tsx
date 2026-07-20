@@ -8,6 +8,7 @@ import { Input } from "@components/ui/input"
 import { Textarea } from "@components/ui/textarea"
 import { Label } from "@components/ui/label"
 import { Card, CardContent } from "@components/ui/card"
+import { Upload, X } from "lucide-react"
 import { toast } from "sonner"
 
 export function SettingsForm({ settings }: { settings: any }) {
@@ -17,11 +18,13 @@ export function SettingsForm({ settings }: { settings: any }) {
     siteName: settings.siteName ?? "",
     heroTitle: settings.heroTitle ?? "",
     heroSubtitle: settings.heroSubtitle ?? "",
+    heroImage: settings.heroImage ?? "",
     contactEmail: settings.contactEmail ?? "",
     phone: settings.phone ?? "",
     address: settings.address ?? "",
     socialLinks: settings.socialLinks ?? "",
   })
+  const [uploading, setUploading] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -52,6 +55,54 @@ export function SettingsForm({ settings }: { settings: any }) {
           <div className="space-y-2">
             <Label>Hero Subtitle</Label>
             <Input value={form.heroSubtitle} onChange={set("heroSubtitle")} />
+          </div>
+          <div className="space-y-2">
+            <Label>Hero Background Image</Label>
+            <div className="flex items-center gap-4">
+              <Button
+                variant="outline"
+                type="button"
+                disabled={uploading}
+                onClick={() => document.getElementById("hero-upload")?.click()}
+              >
+                <Upload className="mr-2 h-4 w-4" />
+                {uploading ? "Uploading..." : "Upload Image"}
+              </Button>
+              <input
+                id="hero-upload"
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={async (e) => {
+                  const file = e.target.files?.[0]
+                  if (!file) return
+                  setUploading(true)
+                  const fd = new FormData()
+                  fd.append("file", file)
+                  const res = await fetch("/api/upload", { method: "POST", body: fd })
+                  const data = await res.json()
+                  setForm((prev) => ({ ...prev, heroImage: data.url }))
+                  setUploading(false)
+                }}
+              />
+              {form.heroImage && (
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  type="button"
+                  onClick={() => setForm((prev) => ({ ...prev, heroImage: "" }))}
+                >
+                  <X className="h-4 w-4" />
+                </Button>
+              )}
+            </div>
+            {form.heroImage && (
+              <img
+                src={form.heroImage}
+                alt="Hero"
+                className="w-48 h-32 object-cover rounded-lg mt-2"
+              />
+            )}
           </div>
           <div className="space-y-2">
             <Label>Contact Email</Label>
