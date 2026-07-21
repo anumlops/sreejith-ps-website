@@ -7,15 +7,17 @@ import { useState } from "react"
 import { Menu, X } from "lucide-react"
 import { Button } from "@components/ui/button"
 import { ThemeToggle } from "./theme-toggle"
+import { LangToggle } from "./lang-toggle"
+import { T } from "@lib/lang"
 
-const links = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/activities", label: "Activities" },
-  { href: "/gallery", label: "Gallery" },
-  { href: "/videos", label: "Videos" },
-  { href: "/apec-vision", label: "APEC Vision" },
-  { href: "/contact", label: "Contact" },
+const links: { href: string; label: [string, string] }[] = [
+  { href: "/", label: ["Home", "ഹോം"] },
+  { href: "/about", label: ["About", "എന്നെക്കുറിച്ച്"] },
+  { href: "/activities", label: ["Activities", "പ്രവർത്തനങ്ങൾ"] },
+  { href: "/gallery", label: ["Gallery", "ഗാലറി"] },
+  { href: "/videos", label: ["Videos", "വീഡിയോകൾ"] },
+  { href: "/apec-vision", label: ["APEC Vision", "APEC ദർശനം"] },
+  { href: "/contact", label: ["Contact", "ബന്ധപ്പെടുക"] },
 ]
 
 export function Header() {
@@ -39,13 +41,15 @@ export function Header() {
                   pathname === link.href && "bg-muted font-medium"
                 )}
               >
-                {link.label}
+                <T en={link.label[0]} ml={link.label[1]} />
               </Button>
             </Link>
           ))}
+          <LangToggle />
           <ThemeToggle />
         </nav>
         <div className="flex md:hidden items-center gap-1">
+          <LangToggle />
           <ThemeToggle />
           <Button
             variant="ghost"
@@ -71,7 +75,7 @@ export function Header() {
                   pathname === link.href && "bg-muted"
                 )}
               >
-                {link.label}
+                <T en={link.label[0]} ml={link.label[1]} />
               </Button>
             </Link>
           ))}

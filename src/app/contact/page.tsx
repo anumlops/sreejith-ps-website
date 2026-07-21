@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { getSettings } from "@actions/settings"
 import { ContactForm } from "@components/public/contact-form"
+import { T } from "@lib/lang"
 
 export const dynamic = "force-dynamic"
 import { Mail, Phone, MapPin } from "lucide-react"
@@ -15,9 +16,9 @@ export default async function Contact() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-24">
-      <h1 className="text-5xl font-bold tracking-tight mb-4">Contact</h1>
+      <h1 className="text-5xl font-bold tracking-tight mb-4"><T en="Contact" ml="ബന്ധപ്പെടുക" /></h1>
       <p className="text-xl text-text-muted mb-12">
-        Get in touch with us.
+        <T en="Get in touch with us." ml="ഞങ്ങളുമായി ബന്ധപ്പെടുക." />
       </p>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
         <div className="space-y-8">
@@ -25,7 +26,7 @@ export default async function Contact() {
             <div className="flex items-start gap-4">
               <Phone className="h-5 w-5 mt-1 text-muted-foreground" />
               <div>
-                <h3 className="font-medium">Phone</h3>
+                <h3 className="font-medium"><T en="Phone" ml="ഫോൺ" /></h3>
                 <p className="text-text-muted">{settings.phone}</p>
               </div>
             </div>
@@ -34,10 +35,8 @@ export default async function Contact() {
             <div className="flex items-start gap-4">
               <Mail className="h-5 w-5 mt-1 text-muted-foreground" />
               <div>
-                <h3 className="font-medium">Email</h3>
-                <p className="text-text-muted">
-                  {settings.contactEmail}
-                </p>
+                <h3 className="font-medium"><T en="Email" ml="ഇമെയിൽ" /></h3>
+                <p className="text-text-muted">{settings.contactEmail}</p>
               </div>
             </div>
           )}
@@ -45,10 +44,8 @@ export default async function Contact() {
             <div className="flex items-start gap-4">
               <MapPin className="h-5 w-5 mt-1 text-muted-foreground" />
               <div>
-                <h3 className="font-medium">Address</h3>
-                <p className="text-text-muted whitespace-pre-line">
-                  {settings.address}
-                </p>
+                <h3 className="font-medium"><T en="Address" ml="വിലാസം" /></h3>
+                <p className="text-text-muted whitespace-pre-line">{settings.address}</p>
               </div>
             </div>
           )}

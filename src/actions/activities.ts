@@ -9,8 +9,11 @@ const sections = ["about", "activities", "gallery", "videos", "apec-vision"] as 
 
 const activitySchema = z.object({
   title: z.string().min(1),
+  titleML: z.string().optional().nullable(),
   shortDescription: z.string().min(1),
+  shortDescriptionML: z.string().optional().nullable(),
   story: z.string().min(1),
+  storyML: z.string().optional().nullable(),
   section: z.enum(sections).default("activities"),
   coverImage: z.string().optional().nullable(),
   youtubeVideoId: z.string().optional().nullable(),
@@ -22,6 +25,7 @@ const activitySchema = z.object({
       z.object({
         imageUrl: z.string(),
         caption: z.string().optional().nullable(),
+        captionML: z.string().optional().nullable(),
         displayOrder: z.number(),
       })
     )
@@ -37,9 +41,12 @@ export async function createActivity(data: z.infer<typeof activitySchema>) {
   const activity = await prisma.activity.create({
     data: {
       title: validated.title,
+      titleML: validated.titleML,
       slug,
       shortDescription: validated.shortDescription,
+      shortDescriptionML: validated.shortDescriptionML,
       story: validated.story,
+      storyML: validated.storyML,
       section: validated.section,
       coverImage: validated.coverImage,
       youtubeVideoId: validated.youtubeVideoId,
@@ -71,8 +78,11 @@ export async function updateActivity(
     where: { id },
     data: {
       title: validated.title,
+      titleML: validated.titleML,
       shortDescription: validated.shortDescription,
+      shortDescriptionML: validated.shortDescriptionML,
       story: validated.story,
+      storyML: validated.storyML,
       section: validated.section,
       coverImage: validated.coverImage,
       youtubeVideoId: validated.youtubeVideoId,

@@ -34,8 +34,11 @@ interface Props {
   activity?: {
     id: string
     title: string
+    titleML?: string | null
     shortDescription: string
+    shortDescriptionML?: string | null
     story: string
+    storyML?: string | null
     section?: string
     coverImage?: string | null
     youtubeVideoId?: string | null
@@ -49,10 +52,15 @@ export function ActivityForm({ activity, categories }: Props) {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [title, setTitle] = useState(activity?.title ?? "")
+  const [titleML, setTitleML] = useState(activity?.titleML ?? "")
   const [shortDescription, setShortDescription] = useState(
     activity?.shortDescription ?? ""
   )
+  const [shortDescriptionML, setShortDescriptionML] = useState(
+    activity?.shortDescriptionML ?? ""
+  )
   const [story, setStory] = useState(activity?.story ?? "")
+  const [storyML, setStoryML] = useState(activity?.storyML ?? "")
   const [section, setSection] = useState<string>(activity?.section ?? "activities")
   const [categoryId, setCategoryId] = useState(activity?.categoryId ?? "")
   const [coverImage, setCoverImage] = useState(activity?.coverImage ?? "")
@@ -108,8 +116,11 @@ export function ActivityForm({ activity, categories }: Props) {
     try {
       const data = {
         title,
+        titleML: titleML || null,
         shortDescription,
+        shortDescriptionML: shortDescriptionML || null,
         story,
+        storyML: storyML || null,
         section: section as "about" | "activities" | "gallery" | "videos" | "apec-vision",
         coverImage: coverImage || null,
         youtubeVideoId: youtubeVideoId || null,
@@ -155,12 +166,21 @@ export function ActivityForm({ activity, categories }: Props) {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="title">Title</Label>
+            <Label htmlFor="title">Title (English)</Label>
             <Input
               id="title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Activity title"
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="titleML">Title (മലയാളം)</Label>
+            <Input
+              id="titleML"
+              value={titleML}
+              onChange={(e) => setTitleML(e.target.value)}
+              placeholder="പ്രവർത്തനത്തിന്റെ തലക്കെട്ട്"
             />
           </div>
 
@@ -181,7 +201,7 @@ export function ActivityForm({ activity, categories }: Props) {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="shortDescription">Short Description</Label>
+            <Label htmlFor="shortDescription">Short Description (English)</Label>
             <Textarea
               id="shortDescription"
               value={shortDescription}
@@ -190,14 +210,34 @@ export function ActivityForm({ activity, categories }: Props) {
               rows={3}
             />
           </div>
+          <div className="space-y-2">
+            <Label htmlFor="shortDescriptionML">Short Description (മലയാളം)</Label>
+            <Textarea
+              id="shortDescriptionML"
+              value={shortDescriptionML}
+              onChange={(e) => setShortDescriptionML(e.target.value)}
+              placeholder="ഹ്രസ്വ വിവരണം..."
+              rows={3}
+            />
+          </div>
 
           <div className="space-y-2">
-            <Label htmlFor="story">Full Story</Label>
+            <Label htmlFor="story">Full Story (English)</Label>
             <Textarea
               id="story"
               value={story}
               onChange={(e) => setStory(e.target.value)}
               placeholder="Write the full story..."
+              rows={12}
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="storyML">Full Story (മലയാളം)</Label>
+            <Textarea
+              id="storyML"
+              value={storyML}
+              onChange={(e) => setStoryML(e.target.value)}
+              placeholder="പൂർണ്ണ വിവരണം എഴുതുക..."
               rows={12}
             />
           </div>

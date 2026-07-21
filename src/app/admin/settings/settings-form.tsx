@@ -17,7 +17,9 @@ export function SettingsForm({ settings }: { settings: any }) {
   const [form, setForm] = useState({
     siteName: settings.siteName ?? "",
     heroTitle: settings.heroTitle ?? "",
+    heroTitleML: settings.heroTitleML ?? "",
     heroSubtitle: settings.heroSubtitle ?? "",
+    heroSubtitleML: settings.heroSubtitleML ?? "",
     heroImage: settings.heroImage ?? "",
     contactEmail: settings.contactEmail ?? "",
     phone: settings.phone ?? "",
@@ -49,12 +51,20 @@ export function SettingsForm({ settings }: { settings: any }) {
             <Input value={form.siteName} onChange={set("siteName")} />
           </div>
           <div className="space-y-2">
-            <Label>Hero Title</Label>
+            <Label>Hero Title (English)</Label>
             <Input value={form.heroTitle} onChange={set("heroTitle")} />
           </div>
           <div className="space-y-2">
-            <Label>Hero Subtitle</Label>
+            <Label>Hero Title (മലയാളം)</Label>
+            <Input value={form.heroTitleML} onChange={set("heroTitleML")} />
+          </div>
+          <div className="space-y-2">
+            <Label>Hero Subtitle (English)</Label>
             <Input value={form.heroSubtitle} onChange={set("heroSubtitle")} />
+          </div>
+          <div className="space-y-2">
+            <Label>Hero Subtitle (മലയാളം)</Label>
+            <Input value={form.heroSubtitleML} onChange={set("heroSubtitleML")} />
           </div>
           <div className="space-y-2">
             <Label>Hero Background Image</Label>

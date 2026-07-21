@@ -4,10 +4,13 @@ import { motion, useScroll, useTransform } from "framer-motion"
 import Link from "next/link"
 import { Button } from "@components/ui/button"
 import { useRef } from "react"
+import { T } from "@lib/lang"
 
 interface Props {
   title: string
+  titleML?: string | null
   subtitle: string
+  subtitleML?: string | null
   heroImage?: string | null
 }
 
@@ -39,7 +42,7 @@ export function HeroSection({ title, subtitle, heroImage }: Props) {
           transition={{ duration: 0.8 }}
           className="text-5xl md:text-7xl font-bold tracking-tight mb-6"
         >
-          {title}
+          <T en={title} ml={titleML} />
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -47,7 +50,7 @@ export function HeroSection({ title, subtitle, heroImage }: Props) {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-xl md:text-2xl text-white/80 mb-8"
         >
-          {subtitle}
+          <T en={subtitle} ml={subtitleML} />
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -60,7 +63,7 @@ export function HeroSection({ title, subtitle, heroImage }: Props) {
               size="lg"
               className="bg-white text-black hover:bg-white/90"
             >
-              View Activities
+              <T en="View Activities" ml="പ്രവർത്തനങ്ങൾ കാണുക" />
             </Button>
           </Link>
           <Link href="/about">
@@ -68,7 +71,7 @@ export function HeroSection({ title, subtitle, heroImage }: Props) {
               size="lg"
               className="bg-white text-black hover:bg-white/90"
             >
-              Learn More
+              <T en="Learn More" ml="കൂടുതൽ അറിയുക" />
             </Button>
           </Link>
         </motion.div>

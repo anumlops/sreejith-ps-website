@@ -1,9 +1,11 @@
 import Link from "next/link"
 import { ChevronRight } from "lucide-react"
+import type { ReactNode } from "react"
+import { T } from "@lib/lang"
 
 interface Props {
-  title: string
-  description?: string
+  title: ReactNode
+  description?: ReactNode
   href?: string
 }
 
@@ -17,9 +19,9 @@ export function SectionTitle({ title, description, href }: Props) {
       {href && (
         <Link
           href={href}
-          className="text-sm text-neutral-500 hover:text-foreground flex items-center gap-1"
+          className="text-sm text-muted-foreground hover:text-foreground flex items-center gap-1"
         >
-          View all <ChevronRight className="h-3 w-3" />
+          <T en="View all" ml="എല്ലാം കാണുക" /> <ChevronRight className="h-3 w-3" />
         </Link>
       )}
     </div>

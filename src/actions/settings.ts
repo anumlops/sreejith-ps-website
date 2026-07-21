@@ -7,7 +7,9 @@ import { z } from "zod"
 const settingsSchema = z.object({
   siteName: z.string().min(1),
   heroTitle: z.string().min(1),
+  heroTitleML: z.string().optional().nullable(),
   heroSubtitle: z.string().min(1),
+  heroSubtitleML: z.string().optional().nullable(),
   contactEmail: z.string().optional().nullable(),
   phone: z.string().optional().nullable(),
   address: z.string().optional().nullable(),

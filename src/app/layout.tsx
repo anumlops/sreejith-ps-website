@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Header } from "@components/public/header"
 import { Footer } from "@components/public/footer"
 import { Toaster } from "sonner"
+import { LangProvider } from "@lib/lang"
 import "./globals.css"
 
 export const metadata: Metadata = {
@@ -21,10 +22,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header />
-        <main className="min-h-screen">{children}</main>
-        <Footer />
-        <Toaster />
+        <LangProvider>
+          <Header />
+          <main className="min-h-screen">{children}</main>
+          <Footer />
+          <Toaster />
+        </LangProvider>
       </body>
     </html>
   )

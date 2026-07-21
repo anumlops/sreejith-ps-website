@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { X, ChevronLeft, ChevronRight } from "lucide-react"
+import { T } from "@lib/lang"
 
 interface GalleryImage {
   id: string
@@ -14,7 +15,7 @@ export function GalleryClient({ images }: { images: GalleryImage[] }) {
   const [current, setCurrent] = useState<number | null>(null)
 
   if (images.length === 0) {
-    return <p className="text-muted-foreground">No images in the gallery yet.</p>
+    return <p className="text-muted-foreground"><T en="No images in the gallery yet." ml="ഗാലറിയിൽ ഇതുവരെ ചിത്രങ്ങളൊന്നുമില്ല." /></p>
   }
 
   return (

@@ -58,9 +58,12 @@ model VerificationToken {
 model Activity {
   id               String     @id @default(cuid())
   title            String
+  titleML          String?
   slug             String     @unique
   shortDescription String     @db.Text
+  shortDescriptionML String?  @db.Text
   story            String     @db.Text
+  storyML          String?    @db.Text
   coverImage       String?
   youtubeVideoId   String?
   section          String     @default("activities")
@@ -79,6 +82,7 @@ model Image {
   activity     Activity? @relation(fields: [activityId], references: [id], onDelete: Cascade)
   imageUrl     String   @db.Text
   caption      String?
+  captionML    String?
   displayOrder Int      @default(0)
   createdAt    DateTime @default(now())
 }
@@ -86,6 +90,7 @@ model Image {
 model Category {
   id         String     @id @default(cuid())
   name       String     @unique
+  nameML     String?
   slug       String     @unique
   activities Activity[]
   createdAt  DateTime   @default(now())
@@ -95,7 +100,9 @@ model Setting {
   id            String   @id @default("default")
   siteName      String   @default("Sreejith P.S.")
   heroTitle     String   @default("Inspiring Change Through Action")
+  heroTitleML   String?
   heroSubtitle  String   @default("Agricultural & Physical Education Center")
+  heroSubtitleML String?
   contactEmail  String?
   phone         String?
   address       String?

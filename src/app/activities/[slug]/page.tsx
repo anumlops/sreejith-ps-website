@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { getActivityBySlug, getPublishedActivities } from "@actions/activities"
+import { T } from "@lib/lang"
 
 export const dynamic = "force-dynamic"
 import { formatDate } from "@lib/utils"
@@ -48,38 +49,33 @@ export default async function ActivityDetail({ params }: Props) {
         <div className="flex items-center gap-3 text-sm text-muted-foreground">
           {activity.category && (
             <span className="text-xs uppercase tracking-wider">
-              {activity.category.name}
+              <T en={activity.category.name} ml={activity.category.nameML} />
             </span>
           )}
           <span>{activity.publishedAt && formatDate(activity.publishedAt)}</span>
         </div>
         <h1 className="text-5xl font-bold tracking-tight">
-          {activity.title}
+          <T en={activity.title} ml={activity.titleML} />
         </h1>
         <p className="text-xl text-text-muted">
-          {activity.shortDescription}
+          <T en={activity.shortDescription} ml={activity.shortDescriptionML} />
         </p>
       </div>
 
-      <div className="prose prose-neutral max-w-none mb-16">
-        {activity.story
-          .split("\n")
-          .filter(Boolean)
-          .map((p, i) => (
-            <p key={i}>{p}</p>
-          ))}
+      <div className="prose prose-neutral max-w-none mb-16 whitespace-pre-line">
+        <T en={activity.story} ml={activity.storyML} />
       </div>
 
       {activity.images.length > 0 && (
         <div className="mb-16">
-          <h2 className="text-2xl font-bold mb-6">Gallery</h2>
+          <h2 className="text-2xl font-bold mb-6"><T en="Gallery" ml="ഗാലറി" /></h2>
           <LightboxGallery images={activity.images} />
         </div>
       )}
 
       {activity.youtubeVideoId && (
         <div className="mb-16">
-          <h2 className="text-2xl font-bold mb-6">Video</h2>
+          <h2 className="text-2xl font-bold mb-6"><T en="Video" ml="വീഡിയോ" /></h2>
           <div className="aspect-video rounded-xl overflow-hidden">
             <iframe
               src={activity.youtubeVideoId}
@@ -92,7 +88,7 @@ export default async function ActivityDetail({ params }: Props) {
 
       {related.length > 0 && (
         <div className="border-t pt-16">
-          <h2 className="text-2xl font-bold mb-8">Related Activities</h2>
+          <h2 className="text-2xl font-bold mb-8"><T en="Related Activities" ml="ബന്ധപ്പെട്ട പ്രവർത്തനങ്ങൾ" /></h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {related.map((a) => (
               <ActivityCard key={a.id} {...a} />
