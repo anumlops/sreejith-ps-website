@@ -66,8 +66,7 @@ export function HeroSection({ title, subtitle, heroImage }: Props) {
           <Link href="/about">
             <Button
               size="lg"
-              variant="outline"
-              className="text-white border-white hover:bg-white/20"
+              className="bg-white text-black hover:bg-white/90"
             >
               Learn More
             </Button>
