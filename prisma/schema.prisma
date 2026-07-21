@@ -63,6 +63,7 @@ model Activity {
   story            String     @db.Text
   coverImage       String?
   youtubeVideoId   String?
+  section          String     @default("activities")
   categoryId       String?
   category         Category?  @relation(fields: [categoryId], references: [id])
   images           Image[]

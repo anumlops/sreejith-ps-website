@@ -5,10 +5,13 @@ import { prisma } from "@lib/prisma"
 import { slugify } from "@lib/utils"
 import { z } from "zod"
 
+const sections = ["about", "activities", "gallery", "videos", "apec-vision"] as const
+
 const activitySchema = z.object({
   title: z.string().min(1),
   shortDescription: z.string().min(1),
   story: z.string().min(1),
+  section: z.enum(sections).default("activities"),
   coverImage: z.string().optional().nullable(),
   youtubeVideoId: z.string().optional().nullable(),
   categoryId: z.string().optional().nullable(),
@@ -37,6 +40,7 @@ export async function createActivity(data: z.infer<typeof activitySchema>) {
       slug,
       shortDescription: validated.shortDescription,
       story: validated.story,
+      section: validated.section,
       coverImage: validated.coverImage,
       youtubeVideoId: validated.youtubeVideoId,
       categoryId: validated.categoryId,
@@ -69,6 +73,7 @@ export async function updateActivity(
       title: validated.title,
       shortDescription: validated.shortDescription,
       story: validated.story,
+      section: validated.section,
       coverImage: validated.coverImage,
       youtubeVideoId: validated.youtubeVideoId,
       categoryId: validated.categoryId,

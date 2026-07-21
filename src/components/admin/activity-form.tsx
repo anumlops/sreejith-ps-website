@@ -36,6 +36,7 @@ interface Props {
     title: string
     shortDescription: string
     story: string
+    section?: string
     coverImage?: string | null
     youtubeVideoId?: string | null
     categoryId?: string | null
@@ -52,6 +53,7 @@ export function ActivityForm({ activity, categories }: Props) {
     activity?.shortDescription ?? ""
   )
   const [story, setStory] = useState(activity?.story ?? "")
+  const [section, setSection] = useState(activity?.section ?? "activities")
   const [categoryId, setCategoryId] = useState(activity?.categoryId ?? "")
   const [coverImage, setCoverImage] = useState(activity?.coverImage ?? "")
   const [youtubeUrl, setYoutubeUrl] = useState("")
@@ -108,6 +110,7 @@ export function ActivityForm({ activity, categories }: Props) {
         title,
         shortDescription,
         story,
+        section,
         coverImage: coverImage || null,
         youtubeVideoId: youtubeVideoId || null,
         categoryId: categoryId || null,
@@ -135,6 +138,22 @@ export function ActivityForm({ activity, categories }: Props) {
     <div className="space-y-8 max-w-4xl">
       <Card>
         <CardContent className="p-6 space-y-6">
+          <div className="space-y-2">
+            <Label htmlFor="section">Section</Label>
+            <Select value={section} onValueChange={setSection}>
+              <SelectTrigger>
+                <SelectValue placeholder="Select section" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="about">About</SelectItem>
+                <SelectItem value="activities">Activities</SelectItem>
+                <SelectItem value="gallery">Gallery</SelectItem>
+                <SelectItem value="videos">Videos</SelectItem>
+                <SelectItem value="apec-vision">APEC Vision</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
           <div className="space-y-2">
             <Label htmlFor="title">Title</Label>
             <Input
