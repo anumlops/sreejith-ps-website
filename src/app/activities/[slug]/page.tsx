@@ -82,7 +82,7 @@ export default async function ActivityDetail({ params }: Props) {
           <h2 className="text-2xl font-bold mb-6">Video</h2>
           <div className="aspect-video rounded-xl overflow-hidden">
             <iframe
-              src={`https://www.youtube.com/embed/${activity.youtubeVideoId}`}
+              src={activity.youtubeVideoId}
               className="w-full h-full"
               allowFullScreen
             />

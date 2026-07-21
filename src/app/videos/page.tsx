@@ -33,7 +33,7 @@ export default async function Videos() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {activities.map((a) => (
             <div key={a.id} className="space-y-3">
-              <VideoCard videoId={a.youtubeVideoId!} title={a.title} />
+              <VideoCard embedUrl={a.youtubeVideoId!} title={a.title} />
               <h3 className="font-semibold">{a.title}</h3>
               <p className="text-sm text-muted-foreground">
                 {a.shortDescription}

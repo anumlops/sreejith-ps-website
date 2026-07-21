@@ -3,7 +3,7 @@
 import { useState, useCallback } from "react"
 import { useRouter } from "next/navigation"
 import { createActivity, updateActivity } from "@actions/activities"
-import { extractYouTubeId } from "@lib/youtube"
+import { getEmbedUrl } from "@lib/youtube"
 import { Button } from "@components/ui/button"
 import { Input } from "@components/ui/input"
 import { Textarea } from "@components/ui/textarea"
@@ -65,8 +65,8 @@ export function ActivityForm({ activity, categories }: Props) {
 
   const handleYoutubeUrlChange = (url: string) => {
     setYoutubeUrl(url)
-    const id = extractYouTubeId(url)
-    if (id) setYoutubeVideoId(id)
+    const embed = getEmbedUrl(url)
+    if (embed) setYoutubeVideoId(embed)
   }
 
   const uploadToCloudinary = useCallback(async (file: File) => {
@@ -282,16 +282,16 @@ export function ActivityForm({ activity, categories }: Props) {
           </div>
 
           <div className="space-y-2">
-            <Label>YouTube Video</Label>
+            <Label>Video Link (YouTube or Google Drive)</Label>
             <Input
               value={youtubeUrl}
               onChange={(e) => handleYoutubeUrlChange(e.target.value)}
-              placeholder="https://youtube.com/watch?v=..."
+              placeholder="https://youtube.com/watch?v=... or https://drive.google.com/file/d/..."
             />
             {youtubeVideoId && (
               <div className="aspect-video w-full max-w-md rounded-lg overflow-hidden">
                 <iframe
-                  src={`https://www.youtube.com/embed/${youtubeVideoId}`}
+                  src={youtubeVideoId}
                   className="w-full h-full"
                   allowFullScreen
                 />
