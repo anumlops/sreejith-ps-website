@@ -53,7 +53,7 @@ export function ActivityForm({ activity, categories }: Props) {
     activity?.shortDescription ?? ""
   )
   const [story, setStory] = useState(activity?.story ?? "")
-  const [section, setSection] = useState(activity?.section ?? "activities")
+  const [section, setSection] = useState<string>(activity?.section ?? "activities")
   const [categoryId, setCategoryId] = useState(activity?.categoryId ?? "")
   const [coverImage, setCoverImage] = useState(activity?.coverImage ?? "")
   const [youtubeUrl, setYoutubeUrl] = useState("")
@@ -110,7 +110,7 @@ export function ActivityForm({ activity, categories }: Props) {
         title,
         shortDescription,
         story,
-        section,
+        section: section as "about" | "activities" | "gallery" | "videos" | "apec-vision",
         coverImage: coverImage || null,
         youtubeVideoId: youtubeVideoId || null,
         categoryId: categoryId || null,
